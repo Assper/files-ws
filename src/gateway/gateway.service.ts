@@ -3,14 +3,14 @@ import {
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
-  WebSocketServer,
+  WebSocketServer
 } from '@nestjs/websockets';
 import { createWriteStream, WriteStream } from 'fs';
 import { join } from 'path';
 import { Server } from 'socket.io';
 
 @Injectable()
-@WebSocketGateway({ transports: ['websocket'], maxHttpBufferSize: 1e7 })
+@WebSocketGateway({ transports: ['websocket'], maxHttpBufferSize: 1e7 }) // 10MB max buffer size for request
 export class GatewayService {
   @WebSocketServer()
   server: Server;

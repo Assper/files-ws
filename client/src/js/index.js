@@ -40,17 +40,6 @@ const sendFile = (blobChunksArray, file) => {
         }
       }
     )
-    // blobChunksArray[0].arrayBuffer().then((buffer) => {
-    //   console.log('BUFFER', buffer)
-    //   socket.emit('file-transfer', { chunk: buffer }, ({ isSuccess }) => {
-    //     console.log('STATUS', isSuccess)
-    //     if (isSuccess) {
-    //       sendFile(blobChunksArray.slice(1)).then(resolve)
-    //     } else {
-    //       resolve({ status: 'failed' })
-    //     }
-    //   })
-    // })
   })
 }
 
@@ -59,7 +48,6 @@ form.addEventListener('submit', (e) => {
   const file = input.files[0]
   const chunks = chunksAmount(file.size)
   const blobChunksArray = sliceFile(file, chunks, file.type)
-  // socket.emit('file-transfer', { chunk: 'Hello' }, console.log)
   console.log('START', new Date())
   sendFile(blobChunksArray, file).then((result) => {
     console.log('SUBMIT', result)
